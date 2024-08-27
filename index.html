@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thinners Donation</title>
     <meta content="Thinners Donation" property="og:title" />
-<meta content="im poor" property="og:description" />
-<meta content="https://thinnerss.github.io/" property="og:url" />
-<meta content="https://live.staticflickr.com/65535/17123251389_80282733ce_z.jpg" property="og:image" />
-<meta content="#43B581" data-react-helmet="true" name="theme-color" />
+    <meta content="im poor" property="og:description" />
+    <meta content="https://thinnerss.github.io/" property="og:url" />
+    <meta content="https://live.staticflickr.com/65535/17123251389_80282733ce_z.jpg" property="og:image" />
+    <meta content="#43B581" data-react-helmet="true" name="theme-color" />
     <style>
         body, html {
             margin: 0;
@@ -30,34 +30,35 @@
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            max-width: 900px;
+            padding: 20px;
+            max-width: 90%;
             width: 100%;
             position: relative;
             z-index: 1;
         }
         .animated-text {
-            font-size: 6rem;
+            font-size: 4rem; /* Adjusted for mobile */
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
             transition: color 0.3s ease;
         }
         .text-container {
-            font-size: 1.5rem;
+            font-size: 1rem; /* Adjusted for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 20px;
+            flex-direction: column; /* Stacks items vertically on small screens */
         }
         .code {
             background: #f9f9f9;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow-wrap: break-word;
-            max-width: 500px;
+            max-width: 90%; /* Adjusted for mobile */
             text-align: center;
         }
         .copy-btn {
@@ -65,9 +66,9 @@
             color: white;
             border: none;
             border-radius: 8px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.875rem; /* Adjusted for mobile */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .copy-btn:hover {
@@ -83,12 +84,12 @@
         .qr-code img {
             border: 1px solid #ddd;
             border-radius: 8px;
-            width: 150px;
-            height: 150px;
+            width: 100px; /* Adjusted for mobile */
+            height: 100px; /* Adjusted for mobile */
         }
         .money {
             position: absolute;
-            width: 50px;
+            width: 30px; /* Adjusted for mobile */
             height: auto;
             animation: float 20s linear infinite;
             pointer-events: none;
@@ -98,7 +99,27 @@
                 transform: translate(0, 0) rotate(0deg);
             }
             100% {
-                transform: translate(calc(100vw - 50px), calc(-100vh - 50px)) rotate(360deg);
+                transform: translate(calc(100vw - 30px), calc(-100vh - 30px)) rotate(360deg);
+            }
+        }
+        /* Media Query for Smaller Screens */
+        @media (max-width: 600px) {
+            .animated-text {
+                font-size: 3rem; /* Further adjusted for very small screens */
+            }
+            .text-container {
+                font-size: 0.875rem; /* Further adjusted for very small screens */
+            }
+            .code {
+                font-size: 0.875rem; /* Further adjusted for very small screens */
+            }
+            .copy-btn {
+                padding: 8px 12px; /* Further adjusted for very small screens */
+                font-size: 0.75rem; /* Further adjusted for very small screens */
+            }
+            .qr-code img {
+                width: 80px; /* Further adjusted for very small screens */
+                height: 80px; /* Further adjusted for very small screens */
             }
         }
     </style>
