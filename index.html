@@ -122,6 +122,13 @@
                 height: 80px; /* Further adjusted for very small screens */
             }
         }
+
+        /* Media Query for Larger Screens */
+        @media (min-width: 601px) {
+            .container {
+                max-width: 600px; /* Constrain the width on larger screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -168,18 +175,24 @@
 
         function updateBalance() {
             const balanceElement = document.getElementById('balance');
-            const url = 'https://api.blockcypher.com/v1/ltc/main/addrs/LQ8K8WTXD5AhkQzBaMpjRVsfaguGscSX7P/balance';
+            const ltcAddress = 'LQ8K8WTXD5AhkQzBaMpjRVsfaguGscSX7P';
+            const balanceUrl = `https://api.blockcypher.com/v1/ltc/main/addrs/${ltcAddress}/balance`;
+            const conversionUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd';
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const balance = data.balance / 1e8;
-                    balanceElement.textContent = `Balance: ${balance.toFixed(8)} LTC`;
-                })
-                .catch(error => {
-                    balanceElement.textContent = 'Failed to load balance';
-                    console.error('Error fetching balance:', error);
-                });
+            Promise.all([
+                fetch(balanceUrl).then(response => response.json()),
+                fetch(conversionUrl).then(response => response.json())
+            ])
+            .then(([balanceData, conversionData]) => {
+                const balanceLTC = balanceData.balance / 1e8;
+                const ltcToUSD = conversionData.litecoin.usd;
+                const balanceUSD = balanceLTC * ltcToUSD;
+                balanceElement.textContent = `Balance: ${balanceLTC.toFixed(8)} LTC ($${balanceUSD.toFixed(2)})`;
+            })
+            .catch(error => {
+                balanceElement.textContent = 'Failed to load balance';
+                console.error('Error fetching balance or conversion rate:', error);
+            });
         }
 
         createFlyingMoney();
