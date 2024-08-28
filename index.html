@@ -4,63 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thinners Donation</title>
-    <meta content="Thinners Donation" property="og:title">
-    <meta content="Help us with a donation!" property="og:description">
-    <meta content="https://thinnerss.github.io/" property="og:url">
-    <meta content="https://live.staticflickr.com/65535/17123251389_80282733ce_z.jpg" property="og:image">
-    <meta content="#43B581" name="theme-color">
+    <meta content="Thinners Donation" property="og:title" />
+    <meta content="im poor" property="og:description" />
+    <meta content="https://thinnerss.github.io/" property="og:url" />
+    <meta content="https://live.staticflickr.com/65535/17123251389_80282733ce_z.jpg" property="og:image" />
+    <meta content="#43B581" data-react-helmet="true" name="theme-color" />
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        body {
             background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
             display: flex;
             justify-content: center;
             align-items: center;
             color: #333;
-            overflow: hidden;
+            position: relative;
         }
-
         .container {
+            text-align: center;
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            text-align: center;
             max-width: 90%;
             width: 100%;
             position: relative;
             z-index: 1;
         }
-
         .animated-text {
-            font-size: 4rem;
+            font-size: 4rem; /* Adjusted for mobile */
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
             transition: color 0.3s ease;
         }
-
         .text-container {
+            font-size: 1rem; /* Adjusted for mobile */
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
             margin-bottom: 20px;
+            flex-direction: column; /* Stacks items vertically on small screens */
         }
-
         .code {
             background: #f9f9f9;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow-wrap: break-word;
-            max-width: 90%;
+            max-width: 90%; /* Adjusted for mobile */
             text-align: center;
-            font-size: 1rem;
         }
-
         .copy-btn {
             background-color: #007bff;
             color: white;
@@ -68,35 +68,32 @@
             border-radius: 8px;
             padding: 10px 15px;
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.875rem; /* Adjusted for mobile */
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
         }
-
         .copy-btn:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
-
+        .copy-btn:focus {
+            outline: none;
+        }
         .qr-code {
             margin-top: 20px;
         }
-
         .qr-code img {
             border: 1px solid #ddd;
             border-radius: 8px;
-            width: 100px;
-            height: 100px;
+            width: 100px; /* Adjusted for mobile */
+            height: 100px; /* Adjusted for mobile */
         }
-
         .money {
             position: absolute;
-            width: 30px;
+            width: 30px; /* Adjusted for mobile */
             height: auto;
             animation: float 20s linear infinite;
             pointer-events: none;
         }
-
         @keyframes float {
             0% {
                 transform: translate(0, 0) rotate(0deg);
@@ -105,30 +102,31 @@
                 transform: translate(calc(100vw - 30px), calc(-100vh - 30px)) rotate(360deg);
             }
         }
-
+        /* Media Query for Smaller Screens */
         @media (max-width: 600px) {
             .animated-text {
-                font-size: 3rem;
+                font-size: 3rem; /* Further adjusted for very small screens */
             }
             .text-container {
-                font-size: 0.875rem;
+                font-size: 0.875rem; /* Further adjusted for very small screens */
             }
             .code {
-                font-size: 0.875rem;
+                font-size: 0.875rem; /* Further adjusted for very small screens */
             }
             .copy-btn {
-                padding: 8px 12px;
-                font-size: 0.75rem;
+                padding: 8px 12px; /* Further adjusted for very small screens */
+                font-size: 0.75rem; /* Further adjusted for very small screens */
             }
             .qr-code img {
-                width: 80px;
-                height: 80px;
+                width: 80px; /* Further adjusted for very small screens */
+                height: 80px; /* Further adjusted for very small screens */
             }
         }
 
+        /* Media Query for Larger Screens */
         @media (min-width: 601px) {
             .container {
-                max-width: 600px;
+                max-width: 600px; /* Constrain the width on larger screens */
             }
         }
     </style>
@@ -145,13 +143,12 @@
             <img src="download.png" alt="QR Code">
         </div>
     </div>
-
     <script>
         function copyToClipboard() {
             const code = document.querySelector('.code').textContent;
             navigator.clipboard.writeText(code).then(() => {
                 alert('Copied to clipboard!');
-            }).catch(() => {
+            }, () => {
                 alert('Failed to copy!');
             });
         }
@@ -164,9 +161,9 @@
                 const money = document.createElement('img');
                 money.src = 'https://via.placeholder.com/50x30.png?text=$';
                 money.className = 'money';
-                money.style.left = `${Math.random() * 100}vw`;
-                money.style.top = `${Math.random() * 100}vh`;
-                money.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                money.style.left = Math.random() * 100 + 'vw';
+                money.style.top = Math.random() * 100 + 'vh';
+                money.style.animationDuration = (Math.random() * 10 + 10) + 's';
 
                 body.appendChild(money);
 
